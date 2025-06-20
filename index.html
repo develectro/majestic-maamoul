@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate-key="appTitle">User Data Info</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="controls-container">
+        <!-- Language Switcher (Dropdown) -->
+        <select id="languageSelect">
+            <option value="en" data-translate-key="langOptionEn">English</option>
+            <option value="ar" data-translate-key="langOptionAr">العربية</option>
+        </select>
+
+        <!-- Theme Switcher -->
+        <div class="theme-switcher">
+            <label class="switch"><input type="checkbox" id="themeSwitch"><span class="slider round"></span></label>
+            <span id="themeLabel" data-translate-key="themeToggleDark">Dark Mode</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 data-translate-key="pageTitle">Your Device & Browser Information</h1>
+        <div class="info-grid">
+            <div class="info-item">
+                <h2 data-translate-key="ipAddressLabel">IP Address</h2>
+                <p id="ipAddress" data-translate-key="loading">Loading...</p>
+            </div>
+            <div class="info-item">
+                <h2 data-translate-key="browserLabel">Browser</h2>
+                <p id="browserName" data-translate-key="loading">Loading...</p>
+                <p id="browserVersion" data-translate-key="loading">Loading...</p>
+            </div>
+            <div class="info-item">
+                <h2 data-translate-key="osLabel">Operating System</h2>
+                <p id="osName" data-translate-key="loading">Loading...</p>
+                <p id="osVersion" data-translate-key="loading">Loading...</p>
+            </div>
+            <div class="info-item">
+                <h2 data-translate-key="cpuLabel">CPU</h2>
+                <p id="cpuCores" data-translate-key="loading">Loading...</p>
+            </div>
+            <div class="info-item">
+                <h2 data-translate-key="screenResolutionLabel">Screen Resolution</h2>
+                <p id="screenResolution" data-translate-key="loading">Loading...</p>
+            </div>
+            <div class="info-item">
+                <h2 data-translate-key="windowSizeLabel">Window Size</h2>
+                <p id="windowSize" data-translate-key="loading">Loading...</p>
+            </div>
+            <div class="info-item">
+                <h2>Language</h2>
+                <p id="language">Loading...</p>
+            </div>
+            <div class="info-item">
+                <h2 data-translate-key="onlineStatusLabel">Online Status</h2>
+                <p id="onlineStatus" data-translate-key="loading">Loading...</p>
+            </div>
+            <div class="info-item">
+                <h2 data-translate-key="cookiesEnabledLabel">Cookies Enabled</h2>
+                <p id="cookiesEnabled" data-translate-key="loading">Loading...</p>
+            </div>
+            <div class="info-item">
+                <h2 data-translate-key="timezoneLabel">Timezone</h2>
+                <p id="timezone" data-translate-key="loading">Loading...</p>
+            </div>
+            <div class="info-item">
+                <h2 data-translate-key="currentTimeLabel">Current Time</h2>
+                <p id="currentTime" data-translate-key="loading">Loading...</p>
+            </div>
+            <div class="info-item" id="geolocationItem" style="display:none;">
+                <h2 data-translate-key="geolocationLabel">Geolocation <button id="getGeolocationBtn" data-translate-key="getGeolocationBtn" class="small-btn">Get Geolocation</button></h2>
+                <p id="geolocation" data-translate-key="geolocationInitialPrompt">Click button to request location</p>
+            </div>
+            <div class="info-item" id="batteryItem" style="display:none;">
+                <h2 data-translate-key="batteryLabel">Battery Status <button id="getBatteryBtn" data-translate-key="getBatteryBtn" class="small-btn">Get Battery</button></h2>
+                <p id="batteryLevel" data-translate-key="batteryInitialPrompt">Click button to request status</p>
+                <p id="batteryCharging" data-translate-key="loading"></p>
+                <p id="batteryChargingTime" data-translate-key="loading"></p>
+                <p id="batteryDischargingTime" data-translate-key="loading"></p>
+            </div>
+            <div class="info-item">
+                <h2 data-translate-key="networkTypeLabel">Network Type</h2>
+                <p id="networkType" data-translate-key="loading">Loading...</p>
+            </div>
+            <div class="info-item">
+                <h2 data-translate-key="deviceMemoryLabel">Device Memory</h2>
+                <p id="deviceMemory" data-translate-key="loading">Loading...</p>
+            </div>
+            <div class="info-item">
+                <h2 data-translate-key="screenColorDepthLabel">Screen Color Depth</h2>
+                <p id="screenColorDepth" data-translate-key="loading">Loading...</p>
+            </div>
+            <div class="info-item">
+                <h2 data-translate-key="screenOrientationLabel">Screen Orientation</h2>
+                <p id="screenOrientationType" data-translate-key="loading">Loading...</p>
+                <p id="screenOrientationAngle" data-translate-key="loading">Loading...</p>
+            </div>
+            <div class="info-item">
+                <h2 data-translate-key="touchSupportLabel">Touch Support</h2>
+                <p id="touchSupport" data-translate-key="loading">Loading...</p>
+            </div>
+            <div class="info-item">
+                <h2 data-translate-key="doNotTrackLabel">Do Not Track</h2>
+                <p id="doNotTrack" data-translate-key="loading">Loading...</p>
+            </div>
+            <div class="info-item">
+                <h2 data-translate-key="pdfViewerLabel">PDF Viewer Enabled</h2>
+                <p id="pdfViewerEnabled" data-translate-key="loading">Loading...</p>
+            </div>
+            <div class="info-item full-width">
+                <h2 data-translate-key="userAgentLabel">User Agent</h2>
+                <p id="userAgent" data-translate-key="loading">Loading...</p>
+            </div>
+            <div class="info-item full-width">
+                <h2 data-translate-key="webglInfoLabel">WebGL Info</h2>
+                <p id="webglRenderer" data-translate-key="loading">Loading...</p>
+                <p id="webglVendor" data-translate-key="loading">Loading...</p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/UAParser.js/0.7.28/ua-parser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

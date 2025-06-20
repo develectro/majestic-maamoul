@@ -1,0 +1,295 @@
+:root {
+    --bg-color: #f4f7f6;
+    --text-color: #333;
+    --container-bg: #fff;
+    --item-bg: #ecf0f1;
+    --item-shadow: rgba(0, 0, 0, 0.05);
+    --header-color: #2c3e50;
+    --item-header-color: #3498db;
+    --item-border-color: #bdc3c7;
+    --button-bg: #2ecc71; /* Geolocation button */
+    --button-text-color: white; /* Geolocation button text */
+    --button-hover-bg: #27ae60; /* Geolocation button hover */
+    --control-bg: #ffffff; /* Background for controls - Light mode */
+    --control-text: #333; /* Text color for controls - Light mode */
+    --control-border: #bdc3c7; /* Border for controls - Light mode */
+    --control-hover-bg: #f0f0f0; /* Hover background for controls - Light mode */
+    --control-button-active-bg: #3498db;
+    --control-button-active-text: white;
+}
+
+body.dark-mode {
+    --bg-color: #1a1a2e;
+    --text-color: #e0e0e0; /* Main text in dark mode */
+    --container-bg: #16213e;
+    --item-bg: #0f3460;
+    --item-shadow: rgba(0, 0, 0, 0.2);
+    --header-color: #e94560;
+    --item-header-color: #53a8b6;
+    --item-border-color: #4a4a6a;
+    --button-bg: #e94560; /* Geolocation button in dark mode */
+    --button-text-color: white; /* Geolocation button text in dark mode */
+    --button-hover-bg: #c7304a; /* Geolocation button hover in dark mode */
+    --control-bg: #1f2a3a; /* Background for controls - Dark mode */
+    --control-text: #e0e0e0; /* Text color for controls - Dark mode */
+    --control-border: #4a4a6a; /* Border for controls - Dark mode */
+    --control-hover-bg: #2a3b4c; /* Hover background for controls - Dark mode */
+    --control-button-active-bg: #53a8b6;
+    --control-button-active-text: #16213e;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: var(--container-bg);
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px var(--item-shadow);
+    transition: background-color 0.3s ease;
+    margin-top: 70px; /* Space for fixed controls */
+}
+
+h1 {
+    text-align: center;
+    color: var(--header-color);
+    margin-bottom: 30px;
+    transition: color 0.3s ease;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.info-item {
+    background-color: var(--item-bg);
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px var(--item-shadow);
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.3s ease;
+}
+
+.info-item h2 {
+    margin-top: 0;
+    font-size: 1.1em;
+    color: var(--item-header-color);
+    border-bottom: 1px solid var(--item-border-color);
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.info-item p {
+    margin: 5px 0;
+    font-size: 0.95em;
+    word-wrap: break-word;
+    flex-grow: 1; /* Allows p to take available space if h2 has a button */
+}
+
+#userAgent {
+    font-size: 0.8em;
+    color: var(--text-color); /* Adjusted for better visibility in dark mode */
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+button#getGeolocationBtn {
+    background-color: var(--button-bg);
+    color: var(--button-text-color);
+    border: none;
+    padding: 5px 10px;
+    font-size: 0.8em;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+    margin-left: auto; /* Default for LTR */
+}
+
+button#getGeolocationBtn:hover {
+    background-color: var(--button-hover-bg);
+}
+
+/* Smaller button style for optional info requests */
+.small-btn {
+    background-color: var(--button-bg);
+    color: var(--button-text-color);
+    border: none;
+    padding: 3px 8px; /* Smaller padding */
+    font-size: 0.75em; /* Smaller font */
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+    margin-left: auto; /* Default for LTR */
+}
+.small-btn:hover { background-color: var(--button-hover-bg); }
+
+.controls-container {
+    position: absolute; /* Changed from fixed to absolute */
+    top: 10px;
+    right: 15px;
+    left: auto; /* for LTR */
+    z-index: 1000;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background-color: var(--container-bg);
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0 1px 5px var(--item-shadow);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Added transition */
+}
+
+/* Removed old .theme-switcher button, .language-switcher button styles as they are no longer used */
+
+/* --- Styles for the new controls --- */
+
+#languageSelect {
+    padding: 8px 12px;
+    border: 1px solid var(--control-border);
+    border-radius: 5px;
+    background-color: var(--container-bg); /* Use container background for select for better integration */
+    color: var(--control-text);
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+#languageSelect:hover {
+    background-color: var(--control-hover-bg);
+}
+
+/* Custom arrow for select dropdown */
+#languageSelect {
+    appearance: none; /* Remove default browser styling */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23333%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-6.5%200-12.3%203.2-15.9%208.1-3.5%204.9-3.8%2011.1-1%2016.4l130.6%20142c3.5%204.9%209.3%208%2015.9%208%206.6%200%2012.4-3.1%2015.9-8l130.6-142c2.8-5.3%202.5-11.6-1-16.4z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 12px;
+    padding-right: 30px; /* Make space for the arrow */
+}
+
+.theme-switcher {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between switch and label */
+}
+
+/* The switch - adapted from W3Schools */
+.switch {
+  position: relative;
+  display: inline-block; /* Use inline-block to sit next to label */
+  width: 45px; /* Slightly wider */
+  height: 23px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--control-border); /* Off state color */
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: ''; /* Content is required for :before */
+  height: 15px; /* Slightly smaller than track height */
+  width: 15px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: var(--item-header-color); /* Use a theme color for 'on' state */
+}
+
+input:checked + .slider:before {
+  transform: translateX(22px); /* Move slider button further */
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 23px; /* Match height/2 */
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+#themeLabel {
+    font-size: 0.9em;
+    color: var(--text-color); /* Use main text color for label */
+    transition: color 0.3s ease;
+}
+
+/* RTL Specific Styles */
+html[dir="rtl"] .controls-container {
+    right: auto;
+    left: 15px;
+}
+
+html[dir="rtl"] .info-item h2 {
+    flex-direction: row-reverse;
+}
+html[dir="rtl"] button#getGeolocationBtn {
+    margin-left: 0;
+    margin-right: auto; /* Push button to the right in RTL */
+}
+html[dir="rtl"] .small-btn {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+/* Adjust custom arrow for RTL select */
+html[dir="rtl"] #languageSelect {
+    background-position: left 8px center;
+    padding-left: 30px; /* Make space for the arrow on the left */
+    padding-right: 12px; /* Reset right padding */
+}
+html[dir="rtl"] .theme-switcher {
+    flex-direction: row-reverse; /* Put label before switch */
+    gap: 8px;
+}
+@media (max-width: 600px) {
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+    .container { padding: 15px; }
+    h1 { font-size: 1.5em; }
+    .controls-container {
+        flex-direction: column; /* Stack controls vertically on small screens */
+        align-items: flex-end; /* Or flex-start for RTL */
+    }
+    html[dir="rtl"] .controls-container { align-items: flex-start; }
+}
